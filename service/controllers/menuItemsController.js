@@ -4,8 +4,6 @@ async function createMenuItem(req, res) {
     try {
         const body = req.body;
 
-        console.log(req)
-
         if (!body.Name)
             return es.status(400).json({ message: 'Name is required' })
 
