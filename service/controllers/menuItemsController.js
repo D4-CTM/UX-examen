@@ -5,15 +5,15 @@ async function createMenuItem(req, res) {
         const body = req.body;
 
         if (!body.Name)
-            return es.status(400).json({ message: 'Name is required' })
+            return res.status(400).json({ message: 'Name is required' })
 
         if (!body.Description)
-            return es.status(400).json({ message: 'Description is required' })
+            return res.status(400).json({ message: 'Description is required' })
 
         if (!body.Price)
-            return es.status(400).json({ message: 'Price is required' })
+            return res.status(400).json({ message: 'Price is required' })
 
-        const item = MenuItem.create({
+        const item = await MenuItem.create({
             name: body.Name,
             description: body.Description,
             price: body.Price,
@@ -29,7 +29,7 @@ async function getMenuItem(req, res) {
     try {
         const { id } = req.params;
 
-        const item = MenuItem.findByPk(id);
+        const item = await MenuItem.findByPk(id);
 
         if (!item)
             return res.status(404).json({ message: `Menu Item #${id} not found!` })

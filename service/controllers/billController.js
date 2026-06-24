@@ -5,24 +5,24 @@ async function createBill(req, res) {
         const body = req.body;
 
         if (!body.PaymentType)
-            return es.status(400).json({ message: 'PaymentType is required' })
+            return res.status(400).json({ message: 'PaymentType is required' })
 
         if (!body.DeliveryType)
-            return es.status(400).json({ message: 'DeliveryType is required' })
+            return res.status(400).json({ message: 'DeliveryType is required' })
 
         if (!body.Subtotal)
-            return es.status(400).json({ message: 'Subtotal is required' })
+            return res.status(400).json({ message: 'Subtotal is required' })
 
         if (!body.Discount)
-            return es.status(400).json({ message: 'Discount is required' })
+            return res.status(400).json({ message: 'Discount is required' })
 
         if (!body.Total)
-            return es.status(400).json({ message: 'Total is required' })
+            return res.status(400).json({ message: 'Total is required' })
 
         if (!body.Details)
-            return es.status(400).json({ message: 'Details is required' })
-        
-        const item = MenuItem.create({
+            return res.status(400).json({ message: 'Details is required' })
+
+        const item = await Bill.create({
             paymentType: body.PaymentType,
             deliveryType: body.DeliveryType,
             subtotal: body.Subtotal,
@@ -31,7 +31,7 @@ async function createBill(req, res) {
             details: body.Details
         });
 
-        res.status(200).json({ message: 'Successfully created menu item!', body: item })
+        res.status(200).json({ message: 'Successfully created bill!', body: item })
     } catch (ex) {
         res.status(500).json({ message: ex.message })
     }

@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     BillDetail.init({
         id: {
             primaryKey: true,
-            autoIncrementIdentity: true,
+            autoIncrement: true,
             type: DataTypes.INTEGER,
         },
         quantity: DataTypes.INTEGER,

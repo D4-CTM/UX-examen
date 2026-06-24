@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     Bill.init({
         id: {
             primaryKey: true,
-            autoIncrementIdentity: true,
+            autoIncrement: true,
             type: DataTypes.INTEGER,
         },
         paymentType: DataTypes.INTEGER,
